@@ -1,107 +1,107 @@
-# Präsentation: Reinforcement Learning — Grid World
-**10 Minuten | DNL**
+# Presentation: Reinforcement Learning — Grid World
+**10 Minutes | DNL**
 
 ---
 
-## 1. Problem Introduction — 2 Minuten
+## 1. Problem Introduction — 2 Minutes
 
-**Was habe ich gewählt?**
-> Grid World — ein Agent navigiert durch ein 10x10-Labyrinth von Startpunkt zu Ziel, ohne gegen Wände zu laufen.
+**What did I choose?**
+> Grid World — an agent navigates through a 10x10 maze from start to goal, without hitting walls.
 
-**Was sagen, was zeigen:**
-- "Ich hab Grid World gewählt, weil es das intuitivste Problem ist — man sieht direkt was der Agent tut."
-- "Das Labyrinth ist eine 10x10-Matrix. Nullen sind freie Felder, Einsen sind Wände."
-- "Der Agent startet oben links, Ziel ist unten rechts."
-- Notebook zeigen: **Zelle 1** (Maze-Array)
+**What to say, what to show:**
+- "I chose Grid World because it's the most intuitive problem — you can directly see what the agent is doing."
+- "The maze is a 10x10 matrix. Zeros are free cells, ones are walls."
+- "The agent starts top-left, the goal is bottom-right."
+- Show notebook: **Cell 1** (Maze array)
 
-**Warum ist das interessant für RL?**
-> "Der Agent hat keine Karte — er weiß nicht wo das Ziel ist. Er muss es durch Trial & Error selbst herausfinden."
+**Why is this interesting for RL?**
+> "The agent has no map — it doesn't know where the goal is. It has to find out through trial & error."
 
 ---
 
-## 2. Algorithm Explanation — 3 Minuten
+## 2. Algorithm Explanation — 3 Minutes
 
-**Welcher Algorithmus?**
+**Which algorithm?**
 > Q-Learning
 
-**Wie funktioniert es — einfach erklärt:**
-> "Stell dir vor du lernst ein neues Videospiel. Am Anfang drückst du random Knöpfe. Mit der Zeit merkst du: wenn ich hier links gehe, komme ich näher ans Ziel. Diese Erfahrung speicherst du."
+**How it works — simple explanation:**
+> "Imagine learning a new video game. At first you press random buttons. Over time you notice: if I go left here, I get closer to the goal. You store that experience."
 
-**Das ist genau Q-Learning:**
-- Der Agent speichert für jeden Zustand und jede Aktion einen Wert in der **Q-Tabelle**
-- Gute Aktionen → höherer Wert
-- Schlechte Aktionen → niedrigerer Wert
-- Mit der Zeit lernt die Tabelle den besten Weg
+**That's exactly Q-Learning:**
+- The agent stores a value for every state and action in the **Q-table**
+- Good actions → higher value
+- Bad actions → lower value
+- Over time the table learns the best path
 
-**Key Parameters kurz nennen:**
-| Parameter | Was es macht |
+**Key Parameters:**
+| Parameter | What it does |
 |---|---|
-| `alpha = 0.1` | Wie schnell er lernt |
-| `gamma = 0.9` | Zukünftige Belohnungen zählen fast so viel wie sofortige |
-| `epsilon = 0.5 → 0.01` | Startet mit viel Exploration, wird mit der Zeit gezielter |
+| `alpha = 0.1` | How fast it learns |
+| `gamma = 0.9` | Future rewards count almost as much as immediate ones |
+| `epsilon = 0.5 → 0.01` | Starts with lots of exploration, becomes more targeted over time |
 
-**Belohnungen:**
-- Ziel erreicht: **+50**
-- Gegen Wand: **-10**
-- Jeden Schritt: **-1** (damit er den kürzesten Weg sucht)
-
----
-
-## 3. Implementation Demo — 3 Minuten
-
-**Was zeigen, was sagen:**
-
-1. Notebook öffnen, **Zelle 2** zeigen (Parameter)
-   > "Hier setze ich alle Parameter. Die Q-Tabelle hat die Form 10x10x4 — für jedes Feld, jede der 4 Richtungen."
-
-2. **Zelle 3** zeigen (choose_action)
-   > "ε-greedy: Mit epsilon-Wahrscheinlichkeit zufällig, sonst beste bekannte Aktion."
-
-3. **Zelle 4** — Training laufen lassen
-   > "5000 Episoden. Die Formel aktualisiert nach jeder Aktion die Q-Tabelle."
-
-4. **Zelle 6** — Plot Maze zeigen
-   > "Das ist der gelernte Pfad — der Agent hat selbst herausgefunden wie er durchkommt."
-
-5. **Zelle 7** — Rewards-Plot zeigen
-   > "Hier sieht man wie die Belohnungen mit der Zeit steigen — der Agent wird besser."
+**Rewards:**
+- Goal reached: **+50**
+- Hit a wall: **-10**
+- Each step: **-1** (so it looks for the shortest path)
 
 ---
 
-## 4. Results and Analysis — 2 Minuten
+## 3. Implementation Demo — 3 Minutes
 
-**Wie gut hat es funktioniert?**
-> "Der Agent findet nach dem Training zuverlässig einen Weg durch das Labyrinth. Die Learning Curve zeigt einen klaren Aufwärtstrend."
+**What to show, what to say:**
 
-**Herausforderungen:**
-> "Epsilon-Decay war tricky — zu schnell und der Agent exploriert zu wenig und steckt in schlechten Lösungen fest. Zu langsam und er konvergiert nicht."
+1. Open notebook, show **Cell 2** (Parameters)
+   > "Here I set all parameters. The Q-table has shape 10x10x4 — for every cell, each of the 4 directions."
 
-**Was würde ich anders machen?**
-> "Ich würde mehr Episoden trainieren und verschiedene Epsilon-Decay-Raten vergleichen. Oder das Labyrinth größer machen."
+2. Show **Cell 3** (choose_action)
+   > "ε-greedy: with probability epsilon it picks randomly, otherwise it uses the best known action."
+
+3. **Cell 4** — run the training
+   > "5000 episodes. The formula updates the Q-table after every action."
+
+4. **Cell 6** — show maze plot
+   > "This is the learned path — the agent figured out on its own how to get through."
+
+5. **Cell 7** — show rewards plot
+   > "Here you can see how the rewards increase over time — the agent is getting better."
+
+---
+
+## 4. Results and Analysis — 2 Minutes
+
+**How well did it work?**
+> "After training, the agent reliably finds a path through the maze. The learning curve shows a clear upward trend."
+
+**Challenges:**
+> "Epsilon decay was tricky — too fast and the agent explores too little and gets stuck in bad solutions. Too slow and it doesn't converge."
+
+**What would I do differently?**
+> "I would train more episodes and compare different epsilon decay rates. Or make the maze bigger."
 
 ---
 
 ## 5. Resources & Key Insights — 1 Minute
 
-**Ressourcen:**
+**Resources:**
 - GeeksForGeeks — What is Reinforcement Learning
-- OpenAI Gym Dokumentation
+- OpenAI Gym Documentation
 
 **Key Insight:**
-> "Der interessanteste Teil war das Exploration-Exploitation-Dilemma. Zu viel Exploration = der Agent lernt nicht. Zu wenig = er findet nie den besten Weg. Das gilt übrigens auch im echten Leben."
+> "The most interesting part was the Exploration-Exploitation dilemma. Too much exploration = the agent doesn't learn. Too little = it never finds the best path. That applies to real life too, by the way."
 
 ---
 
-## Q&A — mögliche Fragen & Antworten
+## Q&A — Likely Questions & Answers
 
-**"Warum Q-Learning und nicht SARSA?"**
-> "Q-Learning ist off-policy — es lernt die optimale Policy unabhängig davon was der Agent gerade tut. Einfacher zu implementieren für den Anfang."
+**"Why Q-Learning and not SARSA?"**
+> "Q-Learning is off-policy — it learns the optimal policy regardless of what the agent is currently doing. Simpler to implement as a starting point."
 
-**"Was ist der Unterschied zu Deep Learning?"**
-> "Bei Q-Learning speichern wir eine Tabelle — funktioniert gut bei kleinen Zustandsräumen. Bei Deep Q-Learning ersetzt ein neuronales Netz die Tabelle — nötig wenn der Zustandsraum riesig ist z.B. bei Atari-Spielen."
+**"What's the difference to Deep Learning?"**
+> "With Q-Learning we store a table — works well for small state spaces. With Deep Q-Learning a neural network replaces the table — needed when the state space is huge, e.g. Atari games."
 
-**"Warum epsilon am Anfang 0.5?"**
-> "Am Anfang weiß der Agent nichts — er soll viel ausprobieren. Mit der Zeit sinkt epsilon auf 0.01, er nutzt dann hauptsächlich gelerntes Wissen."
+**"Why epsilon at 0.5 in the beginning?"**
+> "At the start the agent knows nothing — it should explore a lot. Over time epsilon drops to 0.01, so it mainly uses what it has learned."
 
-**"Könnte der Agent auch scheitern?"**
-> "Ja — wenn epsilon zu schnell fällt oder die Rewards falsch gesetzt sind, konvergiert er nicht. Das ist auch in echten RL-Projekten ein häufiges Problem."
+**"Could the agent fail?"**
+> "Yes — if epsilon decays too fast or rewards are set incorrectly, it won't converge. That's also a common problem in real RL projects."
